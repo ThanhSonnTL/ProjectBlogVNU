@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link " href="{{route('blog.index')}}">
+                <a class="nav-link " href="{{route('post.index')}}">
                     <i class="fas fa-users"></i>
                     <span>Quản lý bài viết</span>
                 </a>

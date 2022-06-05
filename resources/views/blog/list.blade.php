@@ -5,7 +5,7 @@
         <h2 class="h3 mb-0 text-gray-800">Quản lý bài viết</h2>
     </div>
     <p>
-        <a href="{{route('blog.create')}}" class="btn btn-success">Tạo mới bài viết</a>
+        <a href="{{route('post.create')}}" class="btn btn-success">Tạo mới bài viết</a>
     </p>
     <!-- Content Row -->
     <div class="row">

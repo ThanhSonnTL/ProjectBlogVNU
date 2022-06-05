@@ -29,7 +29,7 @@ Route::get('/admin', function () {
     return view('admin.home');
 });
 
-Route::resource('/blog', BlogControllerResource::class);
+Route::resource('/post', BlogControllerResource::class);
 
 
 

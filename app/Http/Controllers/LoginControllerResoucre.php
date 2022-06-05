@@ -9,6 +9,6 @@ class LoginControllerResoucre extends Controller
     public function auth_login()
     {
         //Get all blogs
-        return 0;
+        return view('admin.home');
     }
 }
