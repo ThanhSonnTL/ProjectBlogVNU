@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BlogControllerResource;
+use App\Http\Controllers\LoginControllerResoucre;
+use App\Models\Blog;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/tintuc', function () {
+//     return view('tintuc');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-Route::get('/tintuc', function () {
-    return view('tintuc');
+Route::get('/admin', function () {
+    return view('admin.home');
 });
+
+Route::resource('/post', BlogControllerResource::class);
+
+
+
+Route::get('/login',  [LoginControllerResoucre::class, 'auth_login']);
