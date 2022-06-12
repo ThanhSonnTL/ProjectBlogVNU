@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
+  <div id="btnScrollTop">
+    <i class="bi bi-arrow-up-short"></i>
+  </div>
     <header>
       <div class="header-top bg-primary">
           <div class="container">
@@ -35,19 +38,8 @@
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <ul class="nav align-items-center justify-content-end">
-                      <li class="nav-item">
-                        <span class="text-white me-2">Ngôn ngữ</span>
-                      </li>
-                      <li class="nav-item">
-                        <a class="p-1 nav-link text-light" href="#"><img  class=" w-100 h-100 img-fluid" src="/images/ic_vi.jpg" alt=""></a>
-                        
-                      </li>
-                      <li class="nav-item">
-                        <a class="p-1 nav-link text-light" href="#" ><img  class=" w-100 h-100 img-fluid" src="/images/ic_en.jpg" alt=""></a>
-                      </li>
-                      <li class="nav-item ms-5  " >
-                        <a href="/login">login here</a>
-                      </li>
+                    <a class="p-1 nav-link text-light" href="#"><i class="bi bi-person-fill"></i> Đăng nhập</a>
+                    </ul>
                   </div>
               </div>
           </div>
