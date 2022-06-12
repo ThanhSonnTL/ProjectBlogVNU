@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogControllerResource;
+use App\Http\Controllers\CategoryControllerResource;
 use App\Http\Controllers\LoginControllerResoucre;
+use App\Http\Controllers\DepartmentControllerResource;
 use App\Models\Blog;
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,16 @@ Route::get('/admin', function () {
     return view('admin.home');
 });
 
-Route::resource('/post', BlogControllerResource::class);
+Route::resource('/category-manage', CategoryControllerResource::class);
+Route::get('/edit/category-{id}',[CategoryControllerResource::class, 'edit']);
+Route::post('/update/category-{id}',[CategoryControllerResource::class, 'update']);
+Route::get('/delete/category-{id}',[CategoryControllerResource::class, 'delete']);
 
+Route::resource('/department-manage', DepartmentControllerResource::class);
+Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
+Route::get('/edit/department-{id}',[CategoryControllerResource::class, 'edit']);
+Route::post('/update/department-{id}',[CategoryControllerResource::class, 'update']);
+Route::get('/delete/department-{id}',[CategoryControllerResource::class, 'delete']);
 
 
 Route::get('/login',  [LoginControllerResoucre::class, 'auth_login']);

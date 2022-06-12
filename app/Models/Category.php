@@ -14,4 +14,6 @@ class Category extends Model
         create_at,
         update_at'
     ];
+
+    
 }

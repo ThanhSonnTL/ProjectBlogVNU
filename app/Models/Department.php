@@ -15,4 +15,5 @@ class Department extends Model
         create_at,
         update_at'
     ];
+    
 }
