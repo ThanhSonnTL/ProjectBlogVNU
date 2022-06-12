@@ -55,7 +55,7 @@
             <li class="nav-item">
                 <a class="nav-link " href="{{route('category-manage.index')}}">
                     <i class="fas fa-users"></i>
-                    <span>Quản lý bài viết</span>
+                    <span>Quản lý danh mục</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

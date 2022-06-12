@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use  App\Models\Category;
 
 return new class extends Migration
 {
@@ -20,8 +21,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        //Insert Data
+        $Category = new Category;
+        $Category->category_title = "Giới thiệu";
+        $Category->category_parent = "0";
+        $Category->save();
+
+        $Category = new Category;
+        $Category->category_title = "Quá trình phát triển";
+        $Category->category_parent = "1";
+        $Category->save();
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('categories');
