@@ -14,23 +14,21 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Tiêu đề</th>
-                    <th scope="col">Cấp độ</th>
+                    <th scope="col">Danh mục cha</th>
                     <th scope="col">Ngày tạo</th>
                     <th scope="col">Ngày cập nhật</th>
-                    <th class="text-center" scope="col">Xem trước</th>
                     <th class="text-center" scope="col">Sửa</th>
                     <th class="text-center" scope="col">Xóa</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($Categorys as $Category)
+                @foreach($Categories as $Category)
                 <tr>
                     <td scope="row">{{$Category->category_ID}}</td>
                     <td>{{$Category->category_title}}</td>
                     <td>{{$Category->category_parent}}</td>
                     <td>{{$Category->created_at}}</td>
                     <td>{{$Category->updated_at}}</td>
-                    <td class="text-center"><a href="#"><i class="fa-solid fa-eye"></i></a></td>
                     <td class="text-center"><a href="edit/category-{{ $Category->category_ID }}"><i class="fa-solid fa-pen"></i></a></td>
                     <td class="text-center"><a  data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></td>
                 </tr>

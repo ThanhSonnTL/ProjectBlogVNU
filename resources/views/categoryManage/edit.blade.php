@@ -18,8 +18,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="par">Cấp độ</label>
-                            <input id = "par" type="text" class="form-control @error('par') is-invalid @enderror" name="par" value="{{$category[0]->category_parent}}">
+                        <label for="par">Danh mục cha</label></br>
+                            <!-- <input id = "par" type="text" class="form-control @error('par') is-invalid @enderror" name="par"> -->
+                           
+                            <select class="form-control" aria-label="Default select example" name="par">
+                                <option selected value=0>- Không -</option>
+                                @foreach($parents as $parent)
+                                <option value={{ $parent->category_ID}}>{{ $parent->category_title }}</option>
+                                @endforeach()
+                            </select>  
                         </div>
                         <div class="form-group text-center mt-3">
                             <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>

@@ -16,15 +16,12 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('category_ID');
             $table->string('category_title');
-            $table->Integer('category_parent');
+            $table->Integer('category_parent')->default(0);
             $table->timestamps();
         });
+
     }
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('categories');

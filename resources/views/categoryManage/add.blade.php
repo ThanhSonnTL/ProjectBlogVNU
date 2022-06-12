@@ -1,5 +1,5 @@
 @include('admin..header')
-<div class="container">
+<div class="container px-5">
     <div class="row justify-content-center">
         @isset($mess)
         <p><?php echo $mess ?></p>
@@ -18,8 +18,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="par">Cấp độ</label>
-                            <input id = "par" type="text" class="form-control @error('par') is-invalid @enderror" name="par">
+                            <label for="par">Danh mục cha</label></br>
+                            <!-- <input id = "par" type="text" class="form-control @error('par') is-invalid @enderror" name="par"> -->
+                           
+                            <select class="form-control" aria-label="Default select example" name="par">
+                                <option selected value=0>- Không -</option>
+                                @foreach($Parent as $Category)
+                                <option value={{ $Category->category_ID}}>{{ $Category->category_title }}</option>
+                                @endforeach()
+                            </select>
                         </div>
                         <div class="form-group text-center mt-3">
                             <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>

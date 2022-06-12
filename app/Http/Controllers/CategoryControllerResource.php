@@ -9,21 +9,42 @@ use App\Models\Category;
 
 class CategoryControllerResource extends Controller
 {
+    public function getParentbyID($id)
+    {    
+        return $Parent;
+    }
     public function index()
     {
-        //Get all blogs
-        $Category = Category::paginate(10);
-        return view('categoryManage.list')->with('Categorys', $Category);
+        //Get all category
+        $Categorys = DB::select('select * from categories') ;
+        
+        foreach($Categorys as $Category){
+            
+            $Parent = DB::select('select category_title from categories where category_ID = ?',[$Category->category_parent]) ;    
+            if(count($Parent)>0){
+                $Category->category_parent = $Parent[0]->category_title;
+            }
+            else{
+                $Category->category_parent = 'Không';
+            }
+            
+
+        }
+        return view('categoryManage.list')->with('Categories', $Categorys);
     }
+    
+
     public function create()
     {
+        $Parent = DB::select('select * from categories where category_parent=0') ;
+       
         // Show the form for creating a new blog.
-        return view('categoryManage.add');
+        return view('categoryManage.add',['Parent'=>$Parent]);
     }
     public function Store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|min:10'
+            'title' => 'required|min:3'
         ]);
         $result = 'Đăng bài thất bại !';
         $Category = new Category;
@@ -37,12 +58,16 @@ class CategoryControllerResource extends Controller
     {
         // Show the form for creating a new blog.
         $Category = DB::select('select * from categories where category_ID  = ?',[$id]);
-        return view('categoryManage.edit',['category'=>$Category]);
+        
+            $Parent = DB::select('select category_ID,category_title from categories where category_parent = 0') ;  
+
+
+        return view('categoryManage.edit',['category'=>$Category,'parents'=>$Parent]);
     }
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'title' => 'required|min:10'
+            'title' => 'required|min:3'
         ]);
         $result = 'Đăng bài thất bại !';
         $category_title = $request->title;
