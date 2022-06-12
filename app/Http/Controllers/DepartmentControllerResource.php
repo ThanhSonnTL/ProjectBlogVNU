@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Department;
 
@@ -11,12 +12,12 @@ class DepartmentControllerResource extends Controller
     {
         //Get all 
         $Department = Department::paginate(10);
-        return view('DepartmentManage.listDepartment')->with('Departments', $Department);
+        return view('admin.DepartmentManage.listDepartment')->with('Departments', $Department);
     }
     public function create()
     {
         // Show the form for creating a new 
-        return view('DepartmentManage.addDepartment');
+        return view('admin.DepartmentManage.addDepartment');
     }
     public function Store(Request $request)
     {
@@ -28,15 +29,15 @@ class DepartmentControllerResource extends Controller
         $Department->department_name = $request->title;
         $Department->department_desc = $request->par;
         $Department->department_imgURL = $request->par;
-        if ($Category->save())
+        if ($Department->save())
             $result = 'Đăng bài thành công !';
         return redirect()->route('department-manage.index')->with('mess', 'Thành công');
     }
     public function edit($id)
     {
         // Show the form for creating a new blog.
-        $Category = DB::select('select * from departments where department_ID  = ?',[$id]);
-        return view('DepartmentManage.editDepartment',['department'=>$Department]);
+        $Department = DB::select('select * from departments where department_ID  = ?', [$id]);
+        return view('admin.DepartmentManage.editDepartment', ['department' => $Department]);
     }
     public function update(Request $request, $id)
     {
@@ -47,15 +48,12 @@ class DepartmentControllerResource extends Controller
         $department_name = $request->title;
         $department_desc = $request->par;
         $department_imgURL = $request->par;
-        $Category = DB::select('update departments set department_name  = ?, department_desc = ?, department_imgURL = ? where department_ID = ?',[$department_name,$department_desc,$department_imgURL,$id]);
+        $Departmen = DB::select('update departments set department_name  = ?, department_desc = ?, department_imgURL = ? where department_ID = ?', [$department_name, $department_desc, $department_imgURL, $id]);
         return redirect()->route('department-manage.index')->with('mess', 'Thành công');
-
     }
     public function delete(Request $request, $id)
     {
-    
-        $Category = DB::select('delete from departments where department_ID = ?',[$id]);
+        $Department = DB::select('delete from departments where department_ID = ?', [$id]);
         return redirect()->route('department-manage.index')->with('mess', 'Thành công');
-
     }
 }
