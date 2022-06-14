@@ -6,16 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use app\Models\Category;
 
-class Post extends Model
+class posts extends Model
 {
     protected $fillable = [
         'post_ID,
         post_title,
         post_decs,
         post_content,
-        caterory_ID,    
-        create_at,
-        update_at'
+        caterory_ID'
     ];
     public function Categories()
     {

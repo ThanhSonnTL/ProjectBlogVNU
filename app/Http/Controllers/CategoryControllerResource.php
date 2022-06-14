@@ -43,6 +43,7 @@ class CategoryControllerResource extends Controller
         $Category = new Category;
         $Category->category_title = $request->title;
         $Category->category_parent = $request->par;
+        dd($Category);
         if ($Category->save())
             $result = 'Tạo danh mục mới thành công !';
         return redirect()->route('category-manage.index')->with('mess', $result);
