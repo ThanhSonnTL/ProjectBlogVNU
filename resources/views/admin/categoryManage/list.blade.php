@@ -33,7 +33,7 @@
                     <td>{{$Category->created_at}}</td>
                     <td>{{$Category->updated_at}}</td>
                     <td class="text-center"><a href="edit/category-{{ $Category->category_ID }}"><i class="fa-solid fa-pen"></i></a></td>
-                    <td class="text-center"><a data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></td>
+                    <td class="text-center"><a data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-trash-can text-danger"></i></td>
                 </tr>
                 @endforeach()
             </tbody>
@@ -55,7 +55,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     @isset($Category->category_ID)
-                    <a href="delete/category-{{$Category->category_ID}}" class="btn btn-success">Đồng ý</a>
+                    <a href="delete/category-{{$Category->category_ID}}" class="btn btn-danger">Đồng ý</a>
                     @endisset
                 </div>
             </div>

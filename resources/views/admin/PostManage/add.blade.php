@@ -25,9 +25,13 @@
                         <div class="form-group">
                             <label for="post_content">Nội dung</label>
                             <textarea name="post_content" id="cont" class="ckeditor"></textarea>
-                            <label for="category_ID">Tiêu đề</label>
-                            <input id = "title" type="text" class="form-control @error('title') is-invalid @enderror" name="category_ID">
-
+                        </div>
+                        <div>
+                        <select class="form-control" aria-label="Default select example" name="category_ID">
+                                @foreach($category_parents as $category_parent)
+                                <option value={{ $category_parent->category_ID}}>{{ $category_parent->category_title }}</option>
+                                @endforeach()
+                        </select>
                         </div>
                         <div class="form-group text-center mt-3">
                             <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>

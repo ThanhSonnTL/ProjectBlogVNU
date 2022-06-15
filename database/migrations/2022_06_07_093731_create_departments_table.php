@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('department_ID');
             $table->string('department_name');
             $table->string('department_desc');
-            $table->string('department_imgURL');
+            $table->string('department_imgURL')->nullable();
             $table->timestamps();
         });
     }
