@@ -36,20 +36,23 @@ Route::get('/edit/category-{id}',[CategoryControllerResource::class, 'edit']);
 Route::post('/update/category-{id}',[CategoryControllerResource::class, 'update']);
 Route::get('/delete/category-{id}',[CategoryControllerResource::class, 'delete']);
 
-Route::resource('/department-manage', DepartmentControllerResource::class);
-Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
-Route::get('/edit/department-{id}',[CategoryControllerResource::class, 'edit']);
-Route::post('/update/department-{id}',[CategoryControllerResource::class, 'update']);
-Route::get('/delete/department-{id}',[CategoryControllerResource::class, 'delete']);
-
-
 Route::group(['prefix'=> 'posts' , 'as' => 'post.'], function() {
     Route::get('/', [PostControllerResource::class, 'index'])->name('index');
     Route::get('/create', [PostControllerResource::class, 'create'])->name('create');
     Route::post('/create',[PostControllerResource::class, 'store'])->name('store');
     Route::delete('/destroy/{post_ID}',[PostControllerResource::class, 'destroy'])->name('destroy');
     Route::get('/edit/{post_ID}',[PostControllerResource::class, 'edit'])->name('edit');
-    Route::put('/edit/{post_ID}',[PostControllerResource::class, 'update'])->name('update');
+    Route::post('/update/{post_ID}',[PostControllerResource::class, 'update'])->name('update');
+
+});
+
+Route::group(['prefix'=> 'departments' , 'as' => 'department.'], function() {
+    Route::get('/', [DepartmentControllerResource::class, 'index'])->name('index');
+    Route::get('/create', [DepartmentControllerResource::class, 'create'])->name('create');
+    Route::post('/create',[DepartmentControllerResource::class, 'store'])->name('store');
+    Route::delete('/destroy/{department_ID}',[DepartmentControllerResource::class, 'destroy'])->name('destroy');
+    Route::get('/edit/{department_ID}',[DepartmentControllerResource::class, 'edit'])->name('edit');
+    Route::post('/update/{department_ID}',[DepartmentControllerResource::class, 'update'])->name('update');
 
 });
 

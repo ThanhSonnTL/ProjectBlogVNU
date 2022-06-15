@@ -20,7 +20,7 @@ class PostControllerResource extends Controller
         $category_name = array();
         
  
-            $category_name = DB::select('SELECT categories.category_title FROM `posts`,`categories` WHERE posts.category_ID = categories.category_ID');
+        $category_name = DB::select('SELECT categories.category_title FROM `posts`,`categories` WHERE posts.category_ID = categories.category_ID');
     
 
         return view('admin.PostManage.index',['data' => $data,'category_name'=>$category_name]);

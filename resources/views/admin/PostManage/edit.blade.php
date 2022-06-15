@@ -5,9 +5,8 @@
         <p><?php echo $mess ?></p>
         @endisset
         <div class="col-md-8">
-        <form action="" method="POST">
+        <form action="{{route('post.update',$data[0]->post_ID)}}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="card" style="width: 100%">
                     <div class="card-header font-weight-bold">Chỉnh sửa bài viết</div>
                     <div class="card-body">

@@ -79,7 +79,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/department-manage">
+                <a class="nav-link " href="{{route('department.index')}}">
                 <i class="fa-solid fa-house-building"></i>
                     <span>Quản lý phòng ban</span>
                 </a>
