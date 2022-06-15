@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\RequestValidateCategory;
 
 class CategoryControllerResource extends Controller
 {
@@ -13,9 +13,7 @@ class CategoryControllerResource extends Controller
     {
         //Get all category
         $Categorys = DB::select('select * from categories');
-
         foreach ($Categorys as $Category) {
-
             $Parent = DB::select('select category_title from categories where category_ID = ?', [$Category->category_parent]);
             if (count($Parent) > 0) {
                 $Category->category_parent = $Parent[0]->category_title;
@@ -29,21 +27,16 @@ class CategoryControllerResource extends Controller
 
     public function create()
     {
-        $Parent = DB::select('select * from categories where category_parent=0');
-
         // Show the form for creating a new blog.
+        $Parent = DB::select('select * from categories where category_parent=0');
         return view('admin.categoryManage.add', ['Parent' => $Parent]);
     }
-    public function Store(Request $request)
+    public function Store(RequestValidateCategory $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:3'
-        ]);
         $result = 'Tạo danh mục mới thất bại!';
         $Category = new Category;
         $Category->category_title = $request->title;
         $Category->category_parent = $request->par;
-
         if ($Category->save())
             $result = 'Tạo danh mục mới thành công !';
         return redirect()->route('category-manage.index')->with('mess', $result);
