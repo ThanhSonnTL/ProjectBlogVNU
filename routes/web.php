@@ -20,8 +20,9 @@ Route::post('/admin', [LoginControllerResoucre::class, 'submitLogin'])->name('su
 //Quên mật khẩu
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
-Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+Route::post('reset/password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //Logout
 Route::post('reset-password', [LoginControllerResoucre::class, 'submitLogoutForm'])->name('logout.post');
 
@@ -53,12 +54,12 @@ Route::group(['prefix' => '/admin','middleware' => CheckLoginMiddleware::class],
         Route::put('/edit/{category_ID}', [CategoryControllerResource::class, 'update'])->name('update');
     
     });
-
+    Route::resource('/department-manage', DepartmentControllerResource::class);
+    Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
+    Route::get('/edit/department-{id}', [CategoryControllerResource::class, 'edit']);
+    Route::post('/update/department-{id}', [CategoryControllerResource::class, 'update']);
+    Route::get('/delete/department-{id}', [CategoryControllerResource::class, 'delete']);
 });
 
 
-Route::resource('/department-manage', DepartmentControllerResource::class);
-Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
-Route::get('/edit/department-{id}', [CategoryControllerResource::class, 'edit']);
-Route::post('/update/department-{id}', [CategoryControllerResource::class, 'update']);
-Route::get('/delete/department-{id}', [CategoryControllerResource::class, 'delete']);
+
