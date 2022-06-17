@@ -21,7 +21,7 @@ class CategoryControllerResource extends Controller
                 $Category->category_parent = 'Không';
             }
         }
-        return view('admin.categoryManage.list')->with('Categories', $Categorys);
+        return view('admin.CategoryManage.list')->with('Categories', $Categorys);
     }
 
 
@@ -29,17 +29,17 @@ class CategoryControllerResource extends Controller
     {
         // Show the form for creating a new blog.
         $Parent = DB::select('select * from categories where category_parent=0');
-        return view('admin.categoryManage.add', ['Parent' => $Parent]);
+        return view('admin.CategoryManage.add', ['Parent' => $Parent]);
     }
-    public function Store(RequestValidateCategory $request)
+    public function store(RequestValidateCategory $request)
     {
-        $result = 'Tạo danh mục mới thất bại!';
         $Category = new Category;
         $Category->category_title = $request->title;
         $Category->category_parent = $request->par;
+        $result = 'Tạo danh mục mới thất bại!';
         if ($Category->save())
             $result = 'Tạo danh mục mới thành công !';
-        return redirect()->route('category-manage.index')->with('mess', $result);
+        return redirect()->route('category.index')->with('mess', $result);
     }
     public function edit($id)
     {
@@ -48,26 +48,23 @@ class CategoryControllerResource extends Controller
 
         $Parent = DB::select('select category_ID,category_title from categories where category_parent = 0');
 
-
-        return view('admin.categoryManage.edit', ['category' => $Category, 'parents' => $Parent]);
+        return view('admin.CategoryManage.edit', ['category' => $Category[0], 'parents' => $Parent]);
     }
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:3'
+        $category= Category::where('category_ID','=',$id)
+        ->update([
+            'category_title'=>$request->category_title,
+            'category_parent'=>$request->category_parent,
+            'updated_at'=>DB::raw('CURRENT_TIMESTAMP'),
         ]);
-        $result = 'Cập nhật danh mục thất bại';
-        $category_title = $request->title;
-        $category_parent = $request->par;
-        $Category = DB::select('update categories set category_title  = ?, category_parent = ? where category_ID = ?', [$category_title, $category_parent, $id]);
-        if ($Category)
-            $result = 'Cập nhật danh mục thành công';
-        return redirect()->route('category-manage.index')->with('mess', $result);
+        return redirect()->route('category.index');
     }
-    public function delete(Request $request, $id)
+    
+    public function destroy($id)
     {
 
-        $Category = DB::select('delete from categories where category_ID = ?', [$id]);
-        return redirect()->route('category-manage.index')->with('mess', 'Thành công');
+        $Category =Category::where('category_ID','=',$id)->delete();
+        return redirect()->route('category.index');
     }
 }
