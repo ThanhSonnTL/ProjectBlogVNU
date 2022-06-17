@@ -57,9 +57,6 @@ Route::group(['prefix' => '/admin','middleware' => CheckLoginMiddleware::class],
 });
 
 
-
-
-
 Route::resource('/department-manage', DepartmentControllerResource::class);
 Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
 Route::get('/edit/department-{id}', [CategoryControllerResource::class, 'edit']);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('post_title');
             $table->text('post_decs');
             $table->text('post_content');
+            $table->text('post_imgURL')->nullable();
 
             $table->unsignedInteger('category_ID');
             $table->foreign('category_ID')->references('category_ID')->on('categories');

@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lectures', function (Blueprint $table) {
+        Schema::create('lecturers', function (Blueprint $table) {
             $table->increments('lecturer_ID');
             $table->string('lecturer_name');
             $table->string('lecturer_gender');
             $table->string('lecturer_email');
+            $table->string('lecturer_imgURL')->nullable();
 
             $table->unsignedInteger('department_ID');
             $table->foreign('department_ID')->references('department_ID')->on('departments');

@@ -53,8 +53,9 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+
                 <a class="nav-link " href="{{route('category.index')}}">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users"></i>       
                     <span>Quản lý danh mục</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -67,7 +68,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="{{route('post.index')}}">
-                    <i class="fas fa-users"></i>
+                <i class="fa-solid fa-blog"></i>
                     <span>Quản lý bài viết</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -79,8 +80,8 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/department-manage">
-                    <i class="fas fa-users"></i>
+                <a class="nav-link " href="{{route('department.index')}}">
+                <i class="fa-solid fa-house-building"></i>
                     <span>Quản lý phòng ban</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
