@@ -36,7 +36,8 @@
                     <td>{{$data[$i]->created_at}}</td>
                     <td>{{$data[$i]->updated_at}}</td>
                     <td class="text-center"><a href="{{route('post.edit', $data[$i]->post_ID)}}"><i class="fa-solid fa-pen"></i></a></td>
-                    <td><form action="{{ route('post.destroy', $data[$i]->post_ID) }}" method="post">
+                    <td>
+                        <form action="{{ route('post.destroy', $data[$i]->post_ID) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" style="color:#4e73df;border:none;background:#f8f9fc;"><i class="fa-solid fa-trash-can"></i></button>

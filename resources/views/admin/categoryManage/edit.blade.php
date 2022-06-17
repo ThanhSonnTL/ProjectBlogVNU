@@ -5,14 +5,15 @@
         <p><?php echo $mess ?></p>
         @endisset
         <div class="col-md-8">
-            <form name="addPost" action="/update/category-{{$category[0]->category_ID }}" method="POST">
+            <form  action="" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="card" style="width: 100%">
                     <div class="card-header">Chỉnh sửa danh mục</div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="title">Tiêu đề</label>
-                            <input id = "title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{$category[0]->category_title}}">
+                            <input id = "title" type="text" class="form-control @error('title') is-invalid @enderror" name="category_title" value="{{$category->category_title}}">
                             @error('title')
                             <div class="mt-2 alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -21,7 +22,7 @@
                         <label for="par">Danh mục cha</label></br>
                             <!-- <input id = "par" type="text" class="form-control @error('par') is-invalid @enderror" name="par"> -->
                            
-                            <select class="form-control" aria-label="Default select example" name="par">
+                            <select class="form-control" aria-label="Default select example" name="category_parent">
                                 <option selected value=0>- Không -</option>
                                 @foreach($parents as $parent)
                                 <option value={{ $parent->category_ID}}>{{ $parent->category_title }}</option>
