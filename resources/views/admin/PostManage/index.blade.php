@@ -38,6 +38,7 @@
                     <td>{{$data[$i]->updated_at}}</td>
                     <td class="text-center"><a data-toggle="modal" data-target="#exampleModalLong{{$i}}"><i class="fa-solid fa-eye text-primary"></i></td>
                     <td class="text-center"><a href="{{route('post.edit', $data[$i]->post_ID)}}"><i class="fa-solid fa-pen"></i></a></td>
+
                     <td class="text-center"><a data-toggle="modal" data-target="#exampleModalCenter{{$i}}"><i class="fa-solid fa-trash-can text-danger"></i></td>
                 </tr>
                 {{-- modal delete --}}

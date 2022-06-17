@@ -5,56 +5,60 @@ use App\Http\Controllers\CategoryControllerResource;
 use App\Http\Controllers\LoginControllerResoucre;
 use App\Http\Controllers\DepartmentControllerResource;
 use App\Http\Controllers\PostControllerResource;
-use App\Models\Blog;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/tintuc', function () {
-//     return view('tintuc');
-// });
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Middleware\CheckLoginMiddleware;
 
 Route::get('/', function () {
     return view('home');
+})->name('home');
+
+//Login
+Route::get('/login', [LoginControllerResoucre::class, 'auth_login'])->name('formLogin');
+Route::post('/admin', [LoginControllerResoucre::class, 'submitLogin'])->name('submitLogin');
+
+//Quên mật khẩu
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+//Logout
+Route::post('reset-password', [LoginControllerResoucre::class, 'submitLogoutForm'])->name('logout.post');
+
+Route::group(['prefix' => '/admin','middleware' => CheckLoginMiddleware::class], function () {
+    //người dùng phải đăng nhập mới có thể truy cập route này
+
+    Route::get('/admin',[PostControllerResource::class,'getFormLogin'])->name('admin');
+
+    Route::group(['prefix' => '/posts', 'as' => 'post.'], function () {
+        Route::get('/', [PostControllerResource::class, 'index'])->name('index');
+
+        Route::get('/create', [PostControllerResource::class, 'create'])->name('create');
+        Route::post('/create', [PostControllerResource::class, 'store'])->name('store');
+
+        Route::delete('/destroy/{post_ID}', [PostControllerResource::class, 'destroy'])->name('destroy');
+
+        Route::get('/edit/{post_ID}', [PostControllerResource::class, 'edit'])->name('edit');
+        Route::put('/edit/{post_ID}', [PostControllerResource::class, 'update'])->name('update');
+    });
+    Route::group(['prefix' => '/category', 'as' => 'category.'], function () {
+        Route::get('/',[CategoryControllerResource::class,'index'])->name('index');
+        
+        Route::get('/create', [CategoryControllerResource::class, 'create'])->name('create');
+        Route::post('/create', [CategoryControllerResource::class, 'store'])->name('store');
+
+        Route::delete('/destroy/{category_ID}', [CategoryControllerResource::class, 'destroy'])->name('destroy');
+
+        Route::get('/edit/{category_ID}', [CategoryControllerResource::class, 'edit'])->name('edit');
+        Route::put('/edit/{category_ID}', [CategoryControllerResource::class, 'update'])->name('update');
+    
+    });
+
 });
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-
-Route::resource('/category-manage', CategoryControllerResource::class);
-Route::get('/edit/category-{id}',[CategoryControllerResource::class, 'edit']);
-Route::post('/update/category-{id}',[CategoryControllerResource::class, 'update']);
-Route::get('/delete/category-{id}',[CategoryControllerResource::class, 'delete']);
-
-Route::group(['prefix'=> 'posts' , 'as' => 'post.'], function() {
-    Route::get('/', [PostControllerResource::class, 'index'])->name('index');
-    Route::get('/create', [PostControllerResource::class, 'create'])->name('create');
-    Route::post('/create',[PostControllerResource::class, 'store'])->name('store');
-    Route::delete('/destroy/{post_ID}',[PostControllerResource::class, 'destroy'])->name('destroy');
-    Route::get('/edit/{post_ID}',[PostControllerResource::class, 'edit'])->name('edit');
-    Route::post('/update/{post_ID}',[PostControllerResource::class, 'update'])->name('update');
-
-});
-
-Route::group(['prefix'=> 'departments' , 'as' => 'department.'], function() {
-    Route::get('/', [DepartmentControllerResource::class, 'index'])->name('index');
-    Route::get('/create', [DepartmentControllerResource::class, 'create'])->name('create');
-    Route::post('/create',[DepartmentControllerResource::class, 'store'])->name('store');
-    Route::delete('/destroy/{department_ID}',[DepartmentControllerResource::class, 'destroy'])->name('destroy');
-    Route::get('/edit/{department_ID}',[DepartmentControllerResource::class, 'edit'])->name('edit');
-    Route::post('/update/{department_ID}',[DepartmentControllerResource::class, 'update'])->name('update');
-
-});
 
 
-Route::get('/login',  [LoginControllerResoucre::class, 'auth_login']);
+Route::resource('/department-manage', DepartmentControllerResource::class);
+Route::get('/department-manage', [DepartmentControllerResource::class, 'index']);
+Route::get('/edit/department-{id}', [CategoryControllerResource::class, 'edit']);
+Route::post('/update/department-{id}', [CategoryControllerResource::class, 'update']);
+Route::get('/delete/department-{id}', [CategoryControllerResource::class, 'delete']);

@@ -5,7 +5,7 @@
         <p><?php echo $mess ?></p>
         @endisset
         <div class="col-md-8">
-            <form name="addPost" action="{{route('category-manage.store')}}" method="POST">
+            <form name="addPost" action="{{route('category.store')}}" method="POST">
                 @csrf
                 <div class="card" style="width: 100%">
                     <div class="card-header">Thêm mới danh mục</div>
@@ -29,7 +29,7 @@
                             </select>
                         </div>
                         <div class="form-group text-center mt-3">
-                            <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>
+                            <button type="submit" name="btnSave" class="btn btn-primary w-25">Lưu lại</button>
                         </div>
                     </div>
                 </div>
