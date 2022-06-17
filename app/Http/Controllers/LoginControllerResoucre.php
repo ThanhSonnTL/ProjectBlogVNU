@@ -41,7 +41,7 @@ class LoginControllerResoucre extends Controller
             $username=Auth::user()->name;
             return view('admin.home',['username' => $username]);
         } else {
-            return redirect()->route('formLogin')->with('message', 'Tài khoản hoặc mật khẩu chưa chính xác!');
+            return view('auth.login',['err' => 'Tài khoản hoặc mật khẩu chưa chính xác!']); 
         }
     }
 

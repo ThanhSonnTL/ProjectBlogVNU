@@ -57,13 +57,13 @@ class ForgotPasswordController extends Controller
             'email.exists' => 'Email chưa có trong hệ thống',
             'password.required' => 'Password chưa có thông tin',
             'password.min' => 'Password tối thiểu gồm 6 kí tự',
-            'password_confirmation.confirmed' => 'Password chưa khớp vui lòng kiểm tra lại',
+            'password.confirmed' => 'Password chưa khớp vui lòng kiểm tra lại',
             'password_confirmation.required' => 'Trường này không được để trống',
         ];
         $request->validate([
             'email' => 'required|email|exists:users',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required'
         ],$messages);
 
         $updatePassword = DB::table('password_resets')

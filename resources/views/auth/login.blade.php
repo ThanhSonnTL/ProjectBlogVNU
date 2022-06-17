@@ -22,11 +22,13 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <h3 class="mb-5 text-center">Đăng nhập</h3>
+                    <h3 class="mb-3 text-center">Đăng nhập</h3>
                     @if (Session::has('message'))
-                            <div class="mt-2 text-danger">{{ Session::get('message') }}</div>
+                            <div class="mb-2 text-center text-success">{{ Session::get('message') }}</div>
                     @endif
                    
+                    <div class="mb-2 text-center text-danger">@isset($err){{$err}}@endisset</div>
+
                     <form action="{{route('submitLogin')}}" method="POST">
                         @csrf
                         <!-- Email input -->
