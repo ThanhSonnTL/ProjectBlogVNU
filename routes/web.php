@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryControllerResource;
 use App\Http\Controllers\LoginControllerResoucre;
@@ -25,6 +26,8 @@ Route::controller(GuestControllerResource::class)->group(function () {
 });
 
 
+
+
 //Login
 Route::get('/login', [LoginControllerResoucre::class, 'auth_login'])->name('formLogin');
 Route::post('/admin', [LoginControllerResoucre::class, 'submitLogin'])->name('submitLogin');
@@ -45,6 +48,7 @@ Route::group(['prefix' => '/admin','middleware' => CheckLoginMiddleware::class],
     //người dùng phải đăng nhập mới có thể truy cập route này
 
     Route::get('/',[LoginControllerResoucre::class,'getFormLogin'])->name('admin');
+
 
     Route::group(['prefix' => '/posts', 'as' => 'post.'], function () {
         Route::get('/', [PostControllerResource::class, 'index'])->name('index');

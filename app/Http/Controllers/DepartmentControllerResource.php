@@ -26,8 +26,9 @@ class DepartmentControllerResource extends Controller
         $object = new Department();
         $object->department_name = $request->department_name;
         $object->department_desc = $request->department_desc;
-        $request->file('department_imgURL')->store('public');
-        $object->department_imgURL = $request->department_imgURL->store('public');  
+        $img = $request->file('department_imgURL');
+        $storePathIMG = $img->move('department_imgURL',$img->getClientOriginalName());
+        $object->department_imgURL = $storePathIMG; 
         $object->save();
         return redirect()->route('department.index');
 
@@ -44,11 +45,14 @@ class DepartmentControllerResource extends Controller
     }
     public function update(Request $request, $department_ID)
     {
+        $img = $request->file('department_imgURL');
+        $storePathIMG = $img->move('department_imgURL',$img->getClientOriginalName());
+      
         $object = Department::where('department_ID', '=', $department_ID)
             ->update([
                 'department_name' => $request->department_name,
                 'department_desc' => $request->department_desc,
-                'department_imgURL' => $request->department_imgURL,
+                'department_imgURL' => $storePathIMG
             ]);
         return redirect()->route('department.index');
     }

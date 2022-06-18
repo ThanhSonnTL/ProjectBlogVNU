@@ -5,7 +5,7 @@
         <p><?php echo $mess ?></p>
         @endisset
         <div class="col-md-8">
-        <form action="{{route('department.update',$data[0]->department_ID)}}" method="POST">
+        <form action="{{route('department.update',$data[0]->department_ID)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card" style="width: 100%">
                     <div class="card-header font-weight-bold">Chỉnh sửa bài viết</div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label for="department_imgURL">Hình ảnh</label>
-                            <textarea name="department_imgURL" id="cont" class="ckeditor" value="">{{$data[0]->department_imgURL}}</textarea>
+                            <input id = "department_imgURL" type="file" class="form-control @error('title') is-invalid @enderror" name="department_imgURL">
                         </div>
                         <div class="form-group text-center mt-3">
                             <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>

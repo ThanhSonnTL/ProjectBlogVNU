@@ -34,7 +34,7 @@
                     <td scope="row">{{$data[$i]->post_ID}}</td>
                     <td>{{$data[$i]->post_title}}</td>
                     <td>{{strip_tags($data[$i]->post_decs)}}</td>
-                    <td>{{ $category_name[$i]->category_title}}</td>
+                    <td>{{$category_name[$i]->category_title}}</td>
                     <td>{{$data[$i]->post_imgURL}}</td>
                     <td>{{$data[$i]->created_at}}</td>
                     <td>{{$data[$i]->updated_at}}</td>
