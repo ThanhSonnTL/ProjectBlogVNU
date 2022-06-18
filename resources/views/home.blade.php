@@ -131,42 +131,17 @@
             <h2 class="heading news__heading">Tin tức</h2>
         </div>
         <div class="row">
+          @foreach($news as $new)
           <div class="col-lg-3 col-md-6 p-2">
-            <div class="card">
-              <a href=""><img src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2022/05/mau-thong-bao_2204184241.png" class="card-img-top" alt="..."></a> 
-              <div class="card-body">
-                <a href="#" class="card-title">Lễ công bố và trao quyết định bổ nhiệm</a>
-                <p class="card-text">Ngày 18/05/2022, Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội long trọng tổ chức Lễ công bố và trao quyết...</p>
+              <div class="card">
+                <a href="{{route('PostDetail',$post->post_ID)}}"><img src="{{$new->post_imgURL}}" class="card-img-top" alt="..."></a> 
+                <div class="card-body">
+                  <a href="{{route('PostDetail',$post->post_ID)}}" class="card-title">{{$new->post_title}}</a>
+                  <p class="card-text">{{$new->post_decs}}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-2">
-            <div class="card">
-              <a href=""><img src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2022/05/mau-thong-bao_2204184241.png" class="card-img-top" alt="..."></a> 
-              <div class="card-body">
-                <a href="#" class="card-title">Lễ công bố và trao quyết định bổ nhiệm</a>
-                <p class="card-text">Ngày 18/05/2022, Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội long trọng tổ chức Lễ công bố và trao quyết...</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-2">
-            <div class="card">
-              <a href=""><img src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2022/05/mau-thong-bao_2204184241.png" class="card-img-top" alt="..."></a> 
-              <div class="card-body">
-                <a href="#" class="card-title">Lễ công bố và trao quyết định bổ nhiệm</a>
-                <p class="card-text">Ngày 18/05/2022, Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội long trọng tổ chức Lễ công bố và trao quyết...</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-2">
-            <div class="card">
-              <a href=""><img src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2022/05/mau-thong-bao_2204184241.png" class="card-img-top" alt="..."></a> 
-              <div class="card-body">
-                <a href="#" class="card-title">Lễ công bố và trao quyết định bổ nhiệm</a>
-                <p class="card-text">Ngày 18/05/2022, Trường Đại học Công nghệ – Đại học Quốc gia Hà Nội long trọng tổ chức Lễ công bố và trao quyết...</p>
-              </div>
-            </div>
-          </div>
+          @endforeach
           <div class="row">
             <div class="col-md-12 text-center ">
               <a class="seemore" href="">Xem thêm<i class="d-none bi bi-arrow-right"></i></a>

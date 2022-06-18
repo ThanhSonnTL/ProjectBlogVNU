@@ -2,6 +2,8 @@
 let logo = document.querySelector(".logo >a");
 let btnScrollTop = document.querySelector("#btnScrollTop");
 let header = document.querySelector(".header");
+let navitems =  document.querySelector(".nav-item");
+console.log(navitems);
 
 window.onscroll = function () {
     if (
@@ -24,3 +26,16 @@ btnScrollTop.addEventListener("click", function () {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 });
+
+// function resetActiveNav(){
+//     navitems.array.forEach(element => {
+//         element.classList.remove("active");
+//     });
+// }
+
+navitems.array.forEach(element=>{
+    element.addEventListener('click',function(){
+        element.classList.add("active");
+    })
+});
+

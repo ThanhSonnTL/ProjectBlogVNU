@@ -21,11 +21,16 @@
                         <div class="form-group">
                             <label for="post_decs">Mô tả</label></br>
                             <textarea name="post_decs" id="desc" class="ckeditor"></textarea>
-
+                            @error('post_decs')
+                            <div class="mt-2 alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="post_content">Nội dung</label>
                             <textarea name="post_content" id="cont" class="ckeditor"></textarea>
+                            @error('post_content')
+                            <div class="mt-2 alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div>
                         <label for="post_imgURL">Danh mục</label>

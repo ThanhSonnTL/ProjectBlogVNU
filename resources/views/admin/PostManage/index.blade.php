@@ -20,7 +20,6 @@
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Mô tả</th>
                     <th scope="col">Danh mục</th>
-                    <th scope="col">Hình ảnh</th>
                     <th scope="col">Ngày tạo</th>   
                     <th scope="col">Ngày cập nhật</th>
                     <th class="text-center" scope="col">Chi tiết</th>
@@ -35,7 +34,6 @@
                     <td>{{$data[$i]->post_title}}</td>
                     <td>{{strip_tags($data[$i]->post_decs)}}</td>
                     <td>{{$category_name[$i]->category_title}}</td>
-                    <td>{{$data[$i]->post_imgURL}}</td>
                     <td>{{$data[$i]->created_at}}</td>
                     <td>{{$data[$i]->updated_at}}</td>
                     <td class="text-center"><a data-toggle="modal" data-target="#exampleModalLong{{$i}}"><i class="fa-solid fa-eye text-primary"></i></td>

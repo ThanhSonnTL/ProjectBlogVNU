@@ -9,12 +9,13 @@ class GuestControllerResource extends Controller
 {
     public function getAll()
     {
-        $post = DB::select('select post_ID, post_title,post_imgURL from posts where category_ID = 10 LIMIT 6;'); 
+        $posts = DB::select('select post_ID, post_title,post_imgURL from posts where category_ID = 10 LIMIT 6;'); 
+        $news = DB::select('select post_ID,post_decs, post_title,post_imgURL from posts where category_ID = 10 LIMIT 6;'); 
         $category = array();
         $category = DB::select('select category_ID,category_title from categories where category_parent = 0');
         $categoryChild = array();
         $categoryChild = DB::select('select category_ID, category_parent,category_title from categories where category_parent != 0'); 
-        return view('home',['posts' => $post,'categories' => $category,'categoryChildrent'=> $categoryChild]);           
+        return view('home',['posts' => $posts,'news' => $news,'categories' => $category,'categoryChildrent'=> $categoryChild]);           
     }
     public function getPost($id){
         $post=array();
