@@ -32,7 +32,12 @@ class LecturerControllerResource extends Controller
         $object->lecturer_name = $request->lecturer_name;
         $object->lecturer_gender = $request->lecturer_gender;
         $object->lecturer_email = $request->lecturer_email;
-        $object->lecturer_imgURL = $request->lecturer_imgURL;
+
+        $img = $request->file('lecturer_imgURL');
+
+        $storePathIMG = $img->move('lecturer_imgURL',$img->getClientOriginalName());
+         
+        $object->lecturer_imgURL = $storePathIMG;
         $object->department_ID = $request->department_name;
         $object->save();
         
@@ -53,13 +58,17 @@ class LecturerControllerResource extends Controller
     }
     public function update(Request $request,$lecturer_ID)
     {
+        $img = $request->file('lecturer_imgURL');
+
+        $storePathIMG = $img->move('lecturer_imgURL',$img->getClientOriginalName());
+         
         $Lecturer = Lecturer::where('lecturer_ID','=',$lecturer_ID)
         ->update([  
             'lecturer_name' => $request->lecturer_name,
             'lecturer_gender' => $request->lecturer_gender,
             'lecturer_email' => $request->lecturer_email,
             'lecturer_imgURL' => $request->lecturer_imgURL,
-            'department_ID' => $request->department_name
+            'department_ID' => $storePathIMG
         ]);
         return redirect()->route('lecturer.index');
         

@@ -5,7 +5,7 @@
         <p><?php echo $mess ?></p>
         @endisset
         <div class="col-md-8">
-        <form action="{{route('lecturer.update',$data[0]->lecturer_ID)}}" method="POST">
+        <form action="{{route('lecturer.update',$data[0]->lecturer_ID)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card" style="width: 100%">
                     <div class="card-header font-weight-bold">Chỉnh sửa bài viết</div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="post_title">Tiêu đề</label>
-                            <input id = "lecturer_imgURL" type="text" class="form-control @error('title') is-invalid @enderror" name="lecturer_imgURL" value="{{$data[0]->lecturer_imgURL}}">
+                            <input id = "lecturer_imgURL" type="file" class="form-control @error('title') is-invalid @enderror" name="lecturer_imgURL" value="{{$data[0]->lecturer_imgURL}}">
                         </div>
                         <div class="form-group">
                         <select class="form-control" aria-label="Default select example" name="department_name">

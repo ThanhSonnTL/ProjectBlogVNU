@@ -20,8 +20,8 @@ class PostControllerResource extends Controller
         $category_name = array();
         
  
-        $category_name = DB::select('SELECT categories.category_title FROM `posts`,`categories` WHERE posts.category_ID = categories.category_ID');
-    
+        $category_name = DB::select('SELECT post_ID,post_title,post_decs,post_content,post_imgURL,a.category_title FROM posts p, categories a WHERE  p.category_ID=a.category_ID');
+  
 
         return view('admin.PostManage.index',['data' => $data,'category_name'=>$category_name]);
            
@@ -41,7 +41,14 @@ class PostControllerResource extends Controller
         $object->post_decs = $request->post_decs;
         $object->post_content = $request->post_content;
         $object->category_ID = $request->category_ID;
-        $object->post_imgURL = $request->post_imgURL;
+
+
+        $img = $request->file('post_imgURL');
+
+        $storePathIMG = $img->move('post_imgURL',$img->getClientOriginalName());
+         
+        $object->post_imgURL = $storePathIMG;
+
         $object->save();
         
         return redirect()->route('post.index');
@@ -61,14 +68,21 @@ class PostControllerResource extends Controller
     }
     public function update(Request $request,$post_ID)
     {
+
+        $img = $request->file('post_imgURL');
+        $storePathIMG = $img->move('post_imgURL',$img->getClientOriginalName());
+         
+        
+
         $post = Post::where('post_ID','=',$post_ID)
         ->update([  
             'post_title' => $request->post_title,
             'post_decs' => $request->post_decs,
             'post_content' => $request->post_content,
             'category_ID' => $request->category_ID,
-            'post_imgURL' => $request->post_imgURL
-        ]);
+            'post_imgURL' => $storePathIMG
+           ]);
+        
         return redirect()->route('post.index');
         
     }
