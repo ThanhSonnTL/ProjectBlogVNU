@@ -16,9 +16,12 @@ Route::get('/', function () {
 })->name('home');
 
 
+
+//Guest
 Route::controller(GuestControllerResource::class)->group(function () {
     Route::get('/', 'getAll');
-    Route::get('/post','getAll2');
+    Route::get('post/{id}','getPost')->name('getPost');
+    Route::get('postDetail/{id}','getPostDetail')->name('PostDetail');
 });
 
 

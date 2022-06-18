@@ -20,7 +20,7 @@
   <div id="btnScrollTop">
     <i class="bi bi-arrow-up-short"></i>
   </div>
-  <header>
+  <header class="header">
     <div class="header-top bg-primary">
       <div class="container">
         <div class="row align-items-center">
@@ -58,7 +58,12 @@
                       <ul class="position-absolute sub__menu">
                         @for($j=0;$j<count($categoryChildrent);$j++)
                           @if(($categoryChildrent[$j]->category_parent) == ($categories[$i]->category_ID))
-                            <li class="sub__item"><a class="sub__link" href="">{{$categoryChildrent[$j]->category_title}}</a></li>
+                            <li class="sub__item">
+                              <a class="sub__link" 
+                              href="{{route('getPost',$categoryChildrent[$j]->category_ID)}}">
+                                {{$categoryChildrent[$j]->category_title}}
+                              </a>
+                            </li>
                           @endif
                         @endfor
                       </ul>
