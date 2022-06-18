@@ -18,6 +18,16 @@ li {
 i {
   font-style: normal;
 }
+
+figure.image {
+  text-align: center;
+}
+.fixed{
+  position: fixed;
+}
+.page_title{
+  text-transform: uppercase;
+}
 #btnScrollTop {
   width: 36px;
   height: 36px;
@@ -38,7 +48,6 @@ i {
 }
 /* Header */
 header {
-  position: fixed;
   top: 0;
   width: 100%;
   z-index: 9999;
@@ -326,4 +335,47 @@ li.sub__item:hover a.sub__link::after {
   color: #000;
   font-style: normal;
   font-size: 12px;
+}
+
+/* CSS cho trang có 1 post */
+
+.bgTitle {
+  position: relative;
+  width: 100%;
+  padding: 110px 0 60px 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('https://www.fit.uet.vnu.edu.vn/wp-content/themes/fit2019/images/slider-1.jpg');
+}
+
+.bgTitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.page_title {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.mnfixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  left: 0;
+  background: #fff;
 }

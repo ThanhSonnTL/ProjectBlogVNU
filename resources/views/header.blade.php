@@ -20,7 +20,7 @@
   <div id="btnScrollTop">
     <i class="bi bi-arrow-up-short"></i>
   </div>
-  <header>
+  <header class="header">
     <div class="header-top bg-primary">
       <div class="container">
         <div class="row align-items-center">
@@ -52,56 +52,28 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                   <ul class="navbar-nav align-items-center main__menu">
+                  @for($i=0;$i<count($categories);$i++)
                     <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Giới thiệu</a>
+                      <a class="nav-link menu__link" href="#">{{$categories[$i]->category_title}}</a>
                       <ul class="position-absolute sub__menu">
-                        <li class="sub__item"><a class="sub__link" href="">Quá trình phát triển</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Tầm nhìn và sứ mệnh</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Ban chủ nhiệm Khoa</a> </li>
-                        <li class="sub__item"><a class="sub__link" href=""> Các bộ môn và phòng thí nghiệm</a></li>
-                        <li class="sub__item"><a class="sub__link" href=""> Giảng viên</a></li>
-                        <li class="sub__item"><a class="sub__link" href=""> Liên hệ</a></li>
+                        @for($j=0;$j<count($categoryChildrent);$j++)
+                          @if(($categoryChildrent[$j]->category_parent) == ($categories[$i]->category_ID))
+                            <li class="sub__item">
+                              <a class="sub__link" 
+                              href="{{route('getPost',$categoryChildrent[$j]->category_ID)}}">
+                                {{$categoryChildrent[$j]->category_title}}
+                              </a>
+                            </li>
+                          @endif
+                        @endfor
                       </ul>
+                      @if($i == 2)
+                          <li class="nav-item logo d-none d-lg-block">
+                              <a class="navbar-brand logo" href="#"></a>
+                          </li>
+                      @endif
                     </li>
-                    <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Đào tạo</a>
-                      <ul class="position-absolute sub__menu">
-                        <li class="sub__item"><a class="sub__link" href="">Đại học</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Sau đại học</a> </li>
-
-                      </ul>
-                    </li>
-                    <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Nghiên cứu</a>
-                      <ul class="position-absolute sub__menu">
-                        <li class="sub__item"><a class="sub__link" href="">Các đề tài dự án</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Các sản phẩm công nghệ</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Chuyên gia CNTT-TT</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Đối tượng hàn lâm</a></li>
-                      </ul>
-                    </li>
-                    <li class="nav-item logo d-none d-lg-block">
-                      <a class="navbar-brand logo" href="#"></a>
-                    </li>
-                    <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Hợp tác</a>
-                      <ul class="position-absolute sub__menu">
-                        <li class="sub__item"><a class="sub__link" href="">Trung tâm NCUD&HTDN</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Đối tác khối công nghệ</a> </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Tin tức</a>
-                    </li>
-                    <li class="nav-item menu__item">
-                      <a class="nav-link menu__link" href="#">Người học</a>
-                      <ul class="position-absolute sub__menu">
-                        <li class="sub__item"><a class="sub__link" href="">Thành tích nổi bật</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Thông tin việc làm</a> </li>
-                        <li class="sub__item"><a class="sub__link" href="">Các câu hỏi thường gặp</a> </li>
-                        <li class="sub__item"><a class="sub__link" href=""> Cựu sinh viên</a></li>
-                      </ul>
-                    </li>
+                    @endfor
                   </ul>
                 </div>
               </div>
