@@ -23,7 +23,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="department_imgURL">Nội dung</label>
+                            <label for="department_imgURL">Hình ảnh</label>
                             <textarea name="department_imgURL" id="cont" class="ckeditor" value="">{{$data[0]->department_imgURL}}</textarea>
                         </div>
                         <div class="form-group text-center mt-3">

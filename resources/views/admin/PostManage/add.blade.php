@@ -27,11 +27,16 @@
                             <textarea name="post_content" id="cont" class="ckeditor"></textarea>
                         </div>
                         <div>
+                        <label for="post_imgURL">Danh mục</label>
                         <select class="form-control" aria-label="Default select example" name="category_ID">
                                 @foreach($category_parents as $category_parent)
                                 <option value={{ $category_parent->category_ID}}>{{ $category_parent->category_title }}</option>
                                 @endforeach()
-                        </select>
+                        </select></br>
+                        </div>
+                        <div class="form-group">
+                            <label for="post_imgURL">Hình ảnh</label>
+                            <input id = "post_imgURL" type="text" class="form-control @error('title') is-invalid @enderror" name="post_imgURL">
                         </div>
                         <div class="form-group text-center mt-3">
                             <button type="submit" name="btnSave" class="btn btn-primary w-25">Save</button>

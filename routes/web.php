@@ -16,6 +16,7 @@ Route::get('/', function () {
 })->name('home');
 
 
+
 //Guest
 Route::controller(GuestControllerResource::class)->group(function () {
     Route::get('/', 'getAll');

@@ -49,5 +49,4 @@ class GuestControllerResource extends Controller
             return view('layoutPost',['post' => $posts[0],'categories' => $category,'categoryChildrent'=> $categoryChild]); 
         }
 
-    }
 }

@@ -26,30 +26,30 @@ class DepartmentControllerResource extends Controller
         $object = new Department();
         $object->department_name = $request->department_name;
         $object->department_desc = $request->department_desc;
-        $object->department_imgURL = $request->department_imgURL;
+        $request->file('department_imgURL')->store('public');
+        $object->department_imgURL = $request->department_imgURL->store('public');  
         $object->save();
         return redirect()->route('department.index');
+
     }
     public function destroy($department_ID)
     {
-        $object =Department::where('department_ID','=',$department_ID)->delete();
+        $object = Department::where('department_ID', '=', $department_ID)->delete();
         return redirect()->route('department.index')->with('mess', 'Thành công');
     }
     public function edit($department_ID)
     {
-        $object =Department::where('department_ID','=',$department_ID)->get();
-        return view('admin.DepartmentManage.edit',['data' => $object]);
+        $object = Department::where('department_ID', '=', $department_ID)->get();
+        return view('admin.DepartmentManage.edit', ['data' => $object]);
     }
-    public function update(Request $request,$department_ID)
+    public function update(Request $request, $department_ID)
     {
-        $object = Department::where('department_ID','=',$department_ID)
-        ->update([  
-            'department_name' => $request->department_name,
-            'department_desc' => $request->department_desc,
-            'department_imgURL' => $request->department_imgURL,
-        ]);
+        $object = Department::where('department_ID', '=', $department_ID)
+            ->update([
+                'department_name' => $request->department_name,
+                'department_desc' => $request->department_desc,
+                'department_imgURL' => $request->department_imgURL,
+            ]);
         return redirect()->route('department.index');
-        
     }
-
 }
