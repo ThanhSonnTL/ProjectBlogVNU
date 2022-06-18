@@ -37,35 +37,19 @@
             <h3 class="heading p-3">Các bộ môn và phòng thí nghiệm</h3>
           </div>
         </div>
+
         <div class="row">
+        @foreach($posts as $post)
           <div class="col-lg-4 col-md-6 col-sm subject__item">
             <div class="item__imgNews">
-                <a href=""><img class="img-fluid" src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2019/06/he_thong_may_tinh.jpg" alt=""></a>
-                <h5 class="item__desc">Bộ môn hệ thống thông tin</h5>
+            <a href=""><img class="img-fluid" src="{{$post->post_imgURL}}" alt=""></a>
+                <h5 class="item__desc">{{strip_tags($post->post_decs)}}</h5>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm subject__item">
-            <div class="item__imgNews">
-                <a href=""><img class="img-fluid" src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2019/06/he_thong_may_tinh.jpg" alt=""></a>
-                <a href=""></a>
-                <h5 class="item__desc">Bộ môn hệ thống thông tin</h5>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm subject__item">
-            <div class="item__imgNews">
-                <a href=""><img class="img-fluid" src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2019/06/he_thong_may_tinh.jpg" alt=""></a>
-                <a href=""></a>
-                <h5 class="item__desc">Bộ môn hệ thống thông tin</h5>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm subject__item">
-            <div class="item__imgNews">
-                <a href=""><img class="img-fluid" src="https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2019/06/he_thong_may_tinh.jpg" alt=""></a>
-                <a href=""></a>
-                <h5 class="item__desc">Bộ môn hệ thống thông tin</h5>
-            </div>
-          </div>
+          </div> 
+          @endforeach
         </div>
+     
+       
         <div class="row">
           <div class="col-md-12 text-center ">
             <a class="seemore" href="">XEM TẤT CẢ<i class="d-none bi bi-arrow-right"></i></a>

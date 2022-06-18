@@ -41,6 +41,7 @@ class PostControllerResource extends Controller
         $object->post_decs = $request->post_decs;
         $object->post_content = $request->post_content;
         $object->category_ID = $request->category_ID;
+        $object->post_imgURL = $request->post_imgURL;
         $object->save();
         
         return redirect()->route('post.index');
@@ -65,7 +66,8 @@ class PostControllerResource extends Controller
             'post_title' => $request->post_title,
             'post_decs' => $request->post_decs,
             'post_content' => $request->post_content,
-            'category_ID' => $request->category_ID
+            'category_ID' => $request->category_ID,
+            'post_imgURL' => $request->post_imgURL
         ]);
         return redirect()->route('post.index');
         

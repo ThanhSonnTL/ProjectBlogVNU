@@ -3,10 +3,10 @@
 <div class="container">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h2 class="h3 mb-0 text-gray-800">Quản lý phòng ban</h2>
+        <h2 class="h3 mb-0 text-gray-800">Quản lý bài viết</h2>
     </div>
     <p>
-        <a href="{{route('department.create')}}" class="btn btn-success">Thêm phòng ban</a>
+        <a href="{{route('lecturer.create')}}" class="btn btn-success">Thêm giảng viên</a>
     </p>
     @if(session('mess'))
     <div class="alert alert-success">{{session('mess')}}</div>
@@ -17,9 +17,11 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Tên phòng ban</th>
-                    <th scope="col">Mô tả</th>
-                   
+                    <th scope="col">Tên giảng viên</th>
+                    <th scope="col">Giới tính</th>
+                    <th scope="col">Liên lạc</th>
+                    
+                    <th scope="col">Nơi làm việc</th>
                     <th scope="col">Ngày tạo</th>   
                     <th scope="col">Ngày cập nhật</th>
                     <th class="text-center" scope="col">Sửa</th>
@@ -29,13 +31,15 @@
             <tbody>
                 @for($i=0;$i<count($data);$i++)
                     <tr>
-                    <td scope="row">{{$data[$i]->department_ID}}</td>
-                    <td>{{$data[$i]->department_name}}</td>
-                    <td>{{strip_tags($data[$i]->department_desc)}}</td>
+                    <td scope="row">{{$data[$i]->lecturer_ID}}</td>
+                    <td>{{$data[$i]->lecturer_name}}</td>
+                    <td>{{strip_tags($data[$i]->lecturer_gender)}}</td>
+                    <td>{{(strip_tags($data[$i]->lecturer_email))}}</td>
                     
+                    <td>{{ $department_title[$i]->department_name}}</td>
                     <td>{{$data[$i]->created_at}}</td>
                     <td>{{$data[$i]->updated_at}}</td>
-                    <td class="text-center"><a href="{{route('department.edit', $data[$i]->department_ID)}}"><i class="fa-solid fa-pen"></i></a></td>
+                    <td class="text-center"><a href="{{route('lecturer.edit', $data[$i]->lecturer_ID)}}"><i class="fa-solid fa-pen"></i></a></td>
                     <td class="text-center"><a data-toggle="modal" data-target="#exampleModalCenter{{$i}}"><i class="fa-solid fa-trash-can text-danger"></i></td>
                 </tr>
                 {{-- modal delete --}}
@@ -53,7 +57,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <form action="{{ route('department.destroy', $data[$i]->department_ID) }}" method="post">
+                                <form action="{{ route('lecturer.destroy', $data[$i]->lecturer_ID) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Đồng ý</button>
@@ -62,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            @endfor
+                @endfor
           
             </tbody>
         </table>
